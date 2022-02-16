@@ -44,12 +44,13 @@ namespace BethanysPieShopHRM.App.Services
             return null;
         }
 
-        public async Task UpdateEmployee(Employee employee)
+        public async Task UpdateEmployee(Employee employee)        
         {
             var employeeJson =
                 new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
 
             await _httpClient.PutAsync("api/employee", employeeJson);
+
         }
 
         public async Task DeleteEmployee(int employeeId)

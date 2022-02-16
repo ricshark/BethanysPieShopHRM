@@ -37,13 +37,12 @@ namespace BethanysPieShopHRM.App.Pages
         protected string StatusClass = string.Empty;
         protected bool Saved;
 
-        private ElementReference LastNameInput;
+        //private ElementReference LastNameInput;
 
-        protected async override Task OnAfterRenderAsync(bool firstRender)
-        {
-            await LastNameInput.FocusAsync();
-
-        }
+        //protected async override Task OnAfterRenderAsync(bool firstRender)
+        //{          
+        //   await LastNameInput.FocusAsync();
+        //}
 
         protected override async Task OnInitializedAsync()
         {
@@ -73,8 +72,11 @@ namespace BethanysPieShopHRM.App.Pages
         {
             selectedFiles = e.GetMultipleFiles();
             Message = $"{selectedFiles.Count} file(s) selected";
+
             StateHasChanged();
         }
+
+
 
         protected async Task HandleValidSubmit()
         {
@@ -111,6 +113,19 @@ namespace BethanysPieShopHRM.App.Pages
             }
             else
             {
+
+                if (selectedFiles != null)//take first image
+                {
+                    var file = selectedFiles[0];
+                    Stream stream = file.OpenReadStream();
+                    MemoryStream ms = new MemoryStream();
+                    await stream.CopyToAsync(ms);
+                    stream.Close();
+
+                    Employee.ImageName = file.Name;
+                    Employee.ImageContent = ms.ToArray();
+                }
+
                 await EmployeeDataService.UpdateEmployee(Employee);
                 StatusClass = "alert-success";
                 Message = "Employee updated successfully.";

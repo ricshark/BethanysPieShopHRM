@@ -14,13 +14,14 @@
 
              <div class="form-group row">
                 <label for="image" class="col-sm-3">Select image: </label>
-                <InputFile OnChange="OnInputFileChange" multiple />
+                <InputFile id="imageName" class="form-control col-sm-8" @bind-Value="@Employee.ImageName" OnChange="OnInputFileChange" multiple > </InputFile>
+                
             </div>
 
             <div class="form-group row">
                 <label for="lastName" class="col-sm-3">Last name: </label>
-                @*<InputText id="lastName" class="form-control col-sm-8" @bind-Value="@Employee.LastName" placeholder="Enter last name"></InputText>*@
-                <input @ref="LastNameInput" id="lastName" class="form-control col-sm-8" @bind="@Employee.LastName" />
+                <InputText id="lastName" class="form-control col-sm-8" @bind-Value="@Employee.LastName" placeholder="Enter last name"></InputText>
+                @*<input @ref="LastNameInput" id="lastName" class="form-control col-sm-8" @bind="@Employee.LastName" />*@
                 <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.LastName)" />
             </div>
 
@@ -142,7 +143,7 @@
 
             <div class="form-group row">
                 <label for="comment" class="col-sm-3">Comment: </label>
-                <InputTextArea id="comment" class="form-control col-sm-8" @bind-Value="@Employee.Comment" placeholder="Enter comment"></InputTextArea>
+                <InputTextArea id="comment" class="form-control col-sm-8" @bind-Value="@Employee.Comment" placeholder="Enter comment"></InputTextArea>                
                 <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.Comment)" />
             </div>
 

@@ -94,6 +94,7 @@ namespace BethanysPieShopHRM.Api.Models
                 foundEmployee.Comment = employee.Comment;
                 foundEmployee.ExitDate = employee.ExitDate;
                 foundEmployee.JoinedDate = employee.JoinedDate;
+                foundEmployee.ImageName = employee.ImageName;
 
                 _appDbContext.SaveChanges();
 
